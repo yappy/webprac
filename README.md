@@ -16,6 +16,23 @@ $ cargo new --lib <NAME>
 # wasm-bindgen = "<VERSION>"
 
 $ wasm-pack build --target web
+
+# pkg/ に成果物が生成される
+# pkg/<name>.js がエントリ
+
+# index.html を作る
+# import init from "./pkg/<name>.js";
+# でエントリ js ファイルから async function init() をインポートし
+# これを呼ぶと wasm のロードが開始される
+# then() か async function 内で await init() して完了後に
+# wasm からエクスポートされた関数が使えるようになる
+
+# file:/// で直接開いても駄目っぽい
+# wasm の MINE に対応しているサーバを立ち上げる
+$ python3 -m http.server
+
+# index.html をブラウザで開く
+# http://localhost:8000/
 ```
 
 ## Note
